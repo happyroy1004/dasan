@@ -1,4 +1,4 @@
-// 모바일 대응: 표 가로 스크롤 처리 (스와이프 가능)
+// 성분명 생략 없이 전체 출력 (ellipsis 제거)
 import React, { useState, useRef } from "react";
 import data from "./약물데이터.json";
 
@@ -154,8 +154,8 @@ function App() {
               <tbody>
                 {getFilteredDrugs().map((drug, index) => (
                   <tr key={index}>
-                    <td style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{drug["약품명"]}</td>
-                    <td style={{ border: "1px solid #ccc", padding: "8px", fontSize: "12px", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis" }}>{drug["성분"]}</td>
+                    <td style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>{drug["약품명"]}</td>
+                    <td style={{ border: "1px solid #ccc", padding: "8px", fontSize: "12px", whiteSpace: "nowrap" }}>{drug["성분"]}</td>
                     <td style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>{drug["용량"]}</td>
                     <td style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>{drug["제약사"]}</td>
                     <td style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>{drug["약가"]}</td>
