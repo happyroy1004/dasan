@@ -1,4 +1,4 @@
-// 성분명 생략 없이 전체 출력 (ellipsis 제거)
+// 표 넘침 없이 스크롤로 확인 가능하게 개선 (줄바꿈 없이 한 줄에 보기)
 import React, { useState, useRef } from "react";
 import data from "./약물데이터.json";
 
@@ -133,32 +133,31 @@ function App() {
           <div style={{ overflowX: "auto", width: "100%" }}>
             <table
               style={{
-                minWidth: "600px",
+                minWidth: "700px",
                 width: "100%",
                 marginTop: "15px",
                 borderCollapse: "collapse",
                 fontSize: "13px",
-                wordBreak: "keep-all",
-                tableLayout: "fixed"
+                tableLayout: "auto"
               }}
             >
               <thead>
                 <tr>
-                  <th style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>약품명</th>
-                  <th style={{ border: "1px solid #ccc", padding: "8px", fontSize: "12px", whiteSpace: "nowrap" }}>성분</th>
-                  <th style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>용량</th>
-                  <th style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>제약사</th>
-                  <th style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>약가</th>
+                  <th style={{ border: "1px solid #ccc", padding: "8px" }}>약품명</th>
+                  <th style={{ border: "1px solid #ccc", padding: "8px" }}>성분</th>
+                  <th style={{ border: "1px solid #ccc", padding: "8px" }}>용량</th>
+                  <th style={{ border: "1px solid #ccc", padding: "8px" }}>제약사</th>
+                  <th style={{ border: "1px solid #ccc", padding: "8px" }}>약가</th>
                 </tr>
               </thead>
               <tbody>
                 {getFilteredDrugs().map((drug, index) => (
                   <tr key={index}>
-                    <td style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>{drug["약품명"]}</td>
-                    <td style={{ border: "1px solid #ccc", padding: "8px", fontSize: "12px", whiteSpace: "nowrap" }}>{drug["성분"]}</td>
-                    <td style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>{drug["용량"]}</td>
-                    <td style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>{drug["제약사"]}</td>
-                    <td style={{ border: "1px solid #ccc", padding: "8px", whiteSpace: "nowrap" }}>{drug["약가"]}</td>
+                    <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["약품명"]}</td>
+                    <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["성분"]}</td>
+                    <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["용량"]}</td>
+                    <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["제약사"]}</td>
+                    <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["약가"]}</td>
                   </tr>
                 ))}
               </tbody>
