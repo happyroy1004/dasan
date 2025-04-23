@@ -1,4 +1,4 @@
-// 모바일 UI 개선: 글씨 크기 조절, 셀 줄바꿈 방지
+// 모바일 대응: 표 가로 스크롤 처리 (스와이프 가능)
 import React, { useState, useRef } from "react";
 import data from "./약물데이터.json";
 
@@ -130,9 +130,10 @@ function App() {
             />
             &nbsp;동일 용량만 보기
           </label>
-          <div style={{ overflowX: "auto" }}>
+          <div style={{ overflowX: "auto", width: "100%" }}>
             <table
               style={{
+                minWidth: "600px",
                 width: "100%",
                 marginTop: "15px",
                 borderCollapse: "collapse",
