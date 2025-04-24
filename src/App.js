@@ -2,7 +2,7 @@ import React, { useState, useRef } from "react";
 import { FaSearch } from "react-icons/fa";
 import data from "./약물데이터.json";
 
-const categories = ["소화기계", "진통제", "호흡기계", "항생제", "순환기계", "당뇨병용제"];
+const categories = ["소화기계", "호흡기계", "항생제", "순환기계", "당뇨병용제", "정신신경계"];
 
 function App() {
   const [query, setQuery] = useState("");
@@ -88,31 +88,35 @@ function App() {
       <h1 style={{ textAlign: "center" }}>약물 검색기</h1>
 
       {/* 검색창 */}
-      <div style={{ display: "flex", flexDirection: "row", width: "100%", maxWidth: "400px", position: "relative" }}>
-        <FaSearch style={{ fontSize: "20px", marginRight: "8px", alignSelf: "center", color: "#2F75B5" }} />
+      <div style={{
+        width: "100%",
+        maxWidth: "400px",
+        position: "relative",
+        marginBottom: "10px"
+      }}>
+        <FaSearch style={{
+          position: "absolute",
+          top: "50%",
+          left: "12px",
+          transform: "translateY(-50%)",
+          fontSize: "16px",
+          color: "#888"
+        }} />
         <input
           ref={inputRef}
           type="text"
           value={query}
           onChange={handleInputChange}
-          placeholder="약품명을 입력하세요"
-          style={{ flex: 1, padding: "10px", fontSize: "16px" }}
-        />
-        <button
-          onClick={handleSearchClick}
+          placeholder="제품명을 검색하세요"
           style={{
-            padding: "10px 15px",
-            fontSize: "16px",
-            marginLeft: "5px",
-            backgroundColor: "#2F75B5",
-            color: "white",
+            width: "100%",
+            padding: "12px 12px 12px 38px",
+            fontSize: "15px",
             border: "none",
-            borderRadius: "4px",
-            cursor: "pointer"
+            borderRadius: "12px",
+            backgroundColor: "#f5f5f5"
           }}
-        >
-          검색
-        </button>
+        />
         <ul
           style={{
             listStyle: "none",
@@ -124,8 +128,9 @@ function App() {
             width: "100%",
             background: "white",
             position: "absolute",
-            top: "45px",
-            zIndex: 2
+            top: "46px",
+            zIndex: 2,
+            borderRadius: "4px"
           }}
         >
           {suggestions.map((item, index) => (
@@ -138,42 +143,47 @@ function App() {
             </li>
           ))}
         </ul>
+        <button
+          onClick={handleSearchClick}
+          style={{
+            marginTop: "10px",
+            width: "100%",
+            padding: "10px",
+            backgroundColor: "#2F75B5",
+            color: "white",
+            fontSize: "15px",
+            border: "none",
+            borderRadius: "8px",
+            cursor: "pointer"
+          }}
+        >
+          검색
+        </button>
       </div>
 
       {/* 설명창 + 카테고리 버튼 */}
       {!selectedDrug && !selectedCategory && (
         <>
-          <div style={{
-            backgroundColor: "#f9f9f9",
-            border: "1px solid #ccc",
-            borderRadius: "6px",
-            padding: "15px",
-            marginTop: "20px",
-            fontSize: "14px",
-            lineHeight: "1.6",
-            width: "100%"
-          }}>
-            <p>💊 다산팜에서 거래하는 약물 리스트를 검색할 수 있습니다.</p>
-            <p>💊 제품명으로 검색하시면 동일 성분의 약물들을 확인할 수 있습니다.</p>
-            <p>💊 약가는 매일 영업일 10시 경에 업데이트됩니다.</p>
-          </div>
-
+          <h3 style={{ alignSelf: "flex-start", fontSize: "16px", marginTop: "30px", marginBottom: "10px" }}>
+            약물 카테고리
+          </h3>
           <div style={{
             display: "flex",
             flexWrap: "wrap",
-            justifyContent: "center",
             gap: "10px",
-            marginTop: "20px"
+            marginBottom: "30px",
+            justifyContent: "flex-start"
           }}>
             {categories.map((cat) => (
               <button
                 key={cat}
                 onClick={() => handleCategoryClick(cat)}
                 style={{
-                  padding: "8px 12px",
-                  border: "1px solid #aaa",
-                  borderRadius: "4px",
-                  background: "#f0f0f0",
+                  padding: "10px 16px",
+                  border: "1px solid #ccc",
+                  borderRadius: "12px",
+                  background: "white",
+                  fontSize: "14px",
                   cursor: "pointer"
                 }}
               >
@@ -181,13 +191,40 @@ function App() {
               </button>
             ))}
           </div>
+
+          <h3 style={{ alignSelf: "flex-start", fontSize: "16px", marginBottom: "10px" }}>안내사항</h3>
+          <div style={{
+            backgroundColor: "#f9f9f9",
+            border: "1px solid #ccc",
+            borderRadius: "12px",
+            padding: "20px",
+            fontSize: "13px",
+            lineHeight: "1.7",
+            width: "100%",
+            color: "#333"
+          }}>
+            <p>다산팜에서 거래하는 약물 리스트.</p>
+            <p>제품명 검색 시 동일 성분의 약물들이 나옵니다.</p>
+            <p>약가는 매일 영업일 10시 경에 업데이트됩니다.</p>
+          </div>
         </>
       )}
 
       {/* 결과 테이블 */}
       {(selectedDrug || selectedCategory) && (
         <div style={{ marginTop: "40px", width: "100%" }}>
-          <h2>{selectedDrug ? "동일 성분 제품" : `📂 ${selectedCategory} 카테고리`}</h2>
+          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <h2>{selectedDrug ? "동일 성분 제품" : `📂 ${selectedCategory} 카테고리`}</h2>
+            {selectedCategory && (
+              <span
+                onClick={() => setSelectedCategory(null)}
+                style={{ fontSize: "13px", color: "#2F75B5", cursor: "pointer" }}
+              >
+                메인으로 돌아가기
+              </span>
+            )}
+          </div>
+
           {selectedDrug && (
             <label>
               <input
@@ -222,7 +259,15 @@ function App() {
                 {getFilteredDrugs().map((drug, index) => (
                   <tr key={index}>
                     <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["약품명"]}</td>
-                    <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["성분"]}</td>
+                    <td style={{
+                      border: "1px solid #ccc",
+                      padding: "8px",
+                      whiteSpace: "normal",
+                      wordBreak: "break-word",
+                      lineHeight: "1.5"
+                    }}>
+                      {drug["성분"]}
+                    </td>
                     <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["용량"]}</td>
                     <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["제약사"]}</td>
                     <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["약가"]}</td>
@@ -235,7 +280,12 @@ function App() {
       )}
 
       {/* 푸터 */}
-      <footer style={{ marginTop: "60px", fontSize: "13px", color: "#888" }}>
+      <footer style={{
+        marginTop: "60px",
+        fontSize: "13px",
+        color: "#888",
+        textAlign: "center"
+      }}>
         HSY © 2025 | netizenlily@naver.com
       </footer>
     </div>
