@@ -21,8 +21,7 @@ function App() {
     const filtered = data
       .filter((item) =>
         item["약품명"]?.toLowerCase().startsWith(lower)
-      )
-      .slice(0, 10);
+      );
     setSuggestions(filtered);
   };
 
