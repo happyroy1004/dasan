@@ -1,4 +1,3 @@
-// 표 넘침 없이 스크롤로 확인 가능하게 개선 (줄바꿈 없이 한 줄에 보기)
 import React, { useState, useRef } from "react";
 import data from "./약물데이터.json";
 
@@ -68,7 +67,9 @@ function App() {
       position: "relative"
     }}>
       <h1 style={{ textAlign: "center" }}>약물 검색기</h1>
+      
       <div style={{ display: "flex", flexDirection: "row", width: "100%", maxWidth: "400px", position: "relative" }}>
+        <span style={{ fontSize: "20px", marginRight: "8px", alignSelf: "center" }}>💊</span>
         <input
           ref={inputRef}
           type="text"
@@ -119,6 +120,24 @@ function App() {
         </ul>
       </div>
 
+      {/* 설명창 */}
+      {!selectedDrug && (
+        <div style={{
+          backgroundColor: "#f9f9f9",
+          border: "1px solid #ccc",
+          borderRadius: "6px",
+          padding: "15px",
+          marginTop: "20px",
+          fontSize: "14px",
+          lineHeight: "1.6",
+          width: "100%"
+        }}>
+          <p>💊 다산팜에서 거래하는 약물 리스트를 검색할 수 있습니다.</p>
+          <p>💊 제품명으로 검색하시면 동일 성분의 약물들을 확인할 수 있습니다.</p>
+          <p>💊 약가는 매일 영업일 10시 경에 업데이트됩니다.</p>
+        </div>
+      )}
+
       {selectedDrug && (
         <div style={{ marginTop: "40px", width: "100%" }}>
           <h2>동일 성분 제품</h2>
@@ -165,6 +184,11 @@ function App() {
           </div>
         </div>
       )}
+
+      {/* 푸터 */}
+      <footer style={{ marginTop: "60px", fontSize: "13px", color: "#888" }}>
+        HSY © 2025 | netizenlily@naver.com
+      </footer>
     </div>
   );
 }
