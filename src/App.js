@@ -69,7 +69,7 @@ function App() {
       <h1 style={{ textAlign: "center" }}>약물 검색기</h1>
       
       <div style={{ display: "flex", flexDirection: "row", width: "100%", maxWidth: "400px", position: "relative" }}>
-        <span style={{ fontSize: "20px", marginRight: "8px", alignSelf: "center" }}>💊</span>
+        <span style={{ fontSize: "33px", marginRight: "8px", alignSelf: "center" }}>🔍</span>
         <input
           ref={inputRef}
           type="text"
@@ -132,9 +132,9 @@ function App() {
           lineHeight: "1.6",
           width: "100%"
         }}>
-          <p>💊 다산팜에서 거래하는 약물 리스트를 검색할 수 있습니다.</p>
-          <p>💊 제품명으로 검색하시면 동일 성분의 약물들을 확인할 수 있습니다.</p>
-          <p>💊 약가는 매일 영업일 10시 경에 업데이트됩니다.</p>
+          <p> - 다산팜에서 거래하는 약물 리스트를 검색할 수 있습니다.</p>
+          <p> - 제품명으로 검색하시면 동일 성분의 약물들을 확인할 수 있습니다.</p>
+          <p> - 약가는 매일 영업일 10시 경에 업데이트됩니다.</p>
         </div>
       )}
 
