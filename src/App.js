@@ -73,7 +73,7 @@ function App() {
       display: "flex",
       flexDirection: "column",
       alignItems: "center",
-      maxWidth: "600px",
+      maxWidth: "500px",
       margin: "0 auto",
       position: "relative"
     }}>
