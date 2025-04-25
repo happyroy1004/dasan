@@ -38,15 +38,7 @@ function App() {
     setSelectedCategory(null);
   };
 
-  const handleSearchClick = () => {
-    const selected = data.find((item) => item["약품명"] === query);
-    if (selected) {
-      setSelectedDrug(selected);
-      setSuggestions([]);
-      setSameDoseOnly(false);
-      setSelectedCategory(null);
-    }
-  };
+
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
