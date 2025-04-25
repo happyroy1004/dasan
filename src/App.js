@@ -72,8 +72,8 @@ function App() {
       fontFamily: "sans-serif",
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
-      maxWidth: "500px",
+      alignItems: "left",
+      maxWidth: "380px",
       margin: "0 auto",
       position: "relative"
     }}>
@@ -82,8 +82,8 @@ function App() {
       {/* 검색창 + 버튼 정렬 */}
       <div style={{
         display: "flex",
-        alignItems: "center",
-        width: "100%",
+        alignItems: "left",
+        width: "90%",
         gap: "8px",
         marginBottom: "10px"
       }}>
@@ -184,11 +184,11 @@ function App() {
             padding: "20px",
             fontSize: "13px",
             lineHeight: "1.7",
-            width: "100%",
+            width: "90%",
             color: "#333"
           }}>
-            <p>다산팜에서 거래하는 약물 리스트.</p>
-            <p>제품명 검색 시 동일 성분의 약물들이 나옵니다.</p>
+            <p>다산팜에서 거래하는 약물 리스트입니다.</p>
+            <p>제품명 검색 시 동일 성분의 약물이 보여집니다.</p>
             <p>약가는 매일 영업일 10시 경에 업데이트됩니다.</p>
           </div>
         </>
