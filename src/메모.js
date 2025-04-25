@@ -38,6 +38,8 @@ function App() {
     setSelectedCategory(null);
   };
 
+
+
   const handleCategoryClick = (category) => {
     setSelectedCategory(category);
     setQuery("");
@@ -77,6 +79,7 @@ function App() {
     }}>
       <h1 style={{ textAlign: "left", alignSelf: "flex-start", fontSize: "26px" }}>약물 검색</h1>
 
+      {/* 검색창 + 버튼 정렬 */}
       <div style={{
         display: "flex",
         alignItems: "left",
@@ -139,8 +142,10 @@ function App() {
             ))}
           </ul>
         </div>
+     
       </div>
 
+      {/* 설명창 + 카테고리 버튼 */}
       {!selectedDrug && !selectedCategory && (
         <>
           <h3 style={{ alignSelf: "flex-start", fontSize: "16px", marginTop: "30px", marginBottom: "10px" }}>
@@ -189,6 +194,7 @@ function App() {
         </>
       )}
 
+      {/* 결과 테이블 */}
       {(selectedDrug || selectedCategory) && (
         <div style={{ marginTop: "40px", width: "100%" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
@@ -227,14 +233,7 @@ function App() {
             >
               <thead>
                 <tr>
-                  <th style={{
-                    border: "1px solid #ccc",
-                    padding: "8px",
-                    position: "sticky",
-                    left: 0,
-                    background: "#fff",
-                    zIndex: 2
-                  }}>약품명</th>
+                  <th style={{ border: "1px solid #ccc", padding: "8px" }}>약품명</th>
                   <th style={{ border: "1px solid #ccc", padding: "8px" }}>성분</th>
                   <th style={{ border: "1px solid #ccc", padding: "8px" }}>용량</th>
                   <th style={{ border: "1px solid #ccc", padding: "8px" }}>제약사</th>
@@ -244,21 +243,16 @@ function App() {
               <tbody>
                 {getFilteredDrugs().map((drug, index) => (
                   <tr key={index}>
-                    <td style={{
-                      border: "1px solid #ccc",
-                      padding: "8px",
-                      position: "sticky",
-                      left: 0,
-                      background: "#fff",
-                      zIndex: 1
-                    }}>{drug["약품명"]}</td>
+                    <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["약품명"]}</td>
                     <td style={{
                       border: "1px solid #ccc",
                       padding: "8px",
                       whiteSpace: "normal",
                       wordBreak: "break-word",
                       lineHeight: "1.5"
-                    }}>{drug["성분"]}</td>
+                    }}>
+                      {drug["성분"]}
+                    </td>
                     <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["용량"]}</td>
                     <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["제약사"]}</td>
                     <td style={{ border: "1px solid #ccc", padding: "8px" }}>{drug["약가"]}</td>
@@ -270,6 +264,7 @@ function App() {
         </div>
       )}
 
+      {/* 푸터 */}
       <footer style={{
         marginTop: "60px",
         fontSize: "13px",
