@@ -85,80 +85,72 @@ function App() {
       margin: "0 auto",
       position: "relative"
     }}>
-      <h1 style={{ textAlign: "center" }}>약물 검색기</h1>
+      <h1 style={{ textAlign: "left", alignSelf: "flex-start", fontSize: "26px" }}>약물 검색</h1>
 
-      {/* 검색창 */}
+      {/* 검색창 + 버튼 정렬 */}
       <div style={{
+        display: "flex",
+        alignItems: "center",
         width: "100%",
-        maxWidth: "400px",
-        position: "relative",
+        gap: "8px",
         marginBottom: "10px"
       }}>
-        <FaSearch style={{
-          position: "absolute",
-          top: "50%",
-          left: "12px",
-          transform: "translateY(-50%)",
-          fontSize: "16px",
-          color: "#888"
-        }} />
-        <input
-          ref={inputRef}
-          type="text"
-          value={query}
-          onChange={handleInputChange}
-          placeholder="제품명을 검색하세요"
-          style={{
-            width: "100%",
-            padding: "12px 12px 12px 38px",
-            fontSize: "15px",
-            border: "none",
-            borderRadius: "12px",
-            backgroundColor: "#f5f5f5"
-          }}
-        />
-        <ul
-          style={{
-            listStyle: "none",
-            paddingLeft: 0,
-            maxHeight: "160px",
-            overflowY: "auto",
-            border: suggestions.length > 0 ? "1px solid #ccc" : "none",
-            margin: 0,
-            width: "100%",
-            background: "white",
+        <div style={{
+          position: "relative",
+          flexGrow: 1,
+          maxWidth: "400px"
+        }}>
+          <FaSearch style={{
             position: "absolute",
-            top: "46px",
-            zIndex: 2,
-            borderRadius: "4px"
-          }}
-        >
-          {suggestions.map((item, index) => (
-            <li
-              key={index}
-              onClick={() => handleSuggestionClick(item)}
-              style={{ cursor: "pointer", padding: "8px" }}
-            >
-              {item["약품명"]}
-            </li>
-          ))}
-        </ul>
-        <button
-          onClick={handleSearchClick}
-          style={{
-            marginTop: "10px",
-            width: "100%",
-            padding: "10px",
-            backgroundColor: "#2F75B5",
-            color: "white",
-            fontSize: "15px",
-            border: "none",
-            borderRadius: "8px",
-            cursor: "pointer"
-          }}
-        >
-          검색
-        </button>
+            top: "50%",
+            left: "12px",
+            transform: "translateY(-50%)",
+            fontSize: "16px",
+            color: "#888"
+          }} />
+          <input
+            ref={inputRef}
+            type="text"
+            value={query}
+            onChange={handleInputChange}
+            placeholder="제품명을 검색하세요"
+            style={{
+              width: "100%",
+              padding: "12px 12px 12px 38px",
+              fontSize: "15px",
+              border: "none",
+              borderRadius: "12px",
+              backgroundColor: "#f5f5f5"
+            }}
+          />
+          <ul
+            style={{
+              listStyle: "none",
+              paddingLeft: 0,
+              maxHeight: "160px",
+              overflowY: "auto",
+              border: suggestions.length > 0 ? "1px solid #ccc" : "none",
+              margin: 0,
+              width: "100%",
+              background: "white",
+              position: "absolute",
+              top: "46px",
+              zIndex: 2,
+              borderRadius: "4px"
+            }}
+          >
+            {suggestions.map((item, index) => (
+              <li
+                key={index}
+                onClick={() => handleSuggestionClick(item)}
+                style={{ cursor: "pointer", padding: "8px" }}
+              >
+                {item["약품명"]}
+              </li>
+            ))}
+          </ul>
+        </div>
+     
       </div>
 
       {/* 설명창 + 카테고리 버튼 */}
@@ -215,14 +207,15 @@ function App() {
         <div style={{ marginTop: "40px", width: "100%" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <h2>{selectedDrug ? "동일 성분 제품" : `📂 ${selectedCategory} 카테고리`}</h2>
-            {selectedCategory && (
-              <span
-                onClick={() => setSelectedCategory(null)}
-                style={{ fontSize: "13px", color: "#2F75B5", cursor: "pointer" }}
-              >
-                메인으로 돌아가기
-              </span>
-            )}
+            <span
+              onClick={() => {
+                setSelectedCategory(null);
+                setSelectedDrug(null);
+              }}
+              style={{ fontSize: "13px", color: "#2F75B5", cursor: "pointer" }}
+            >
+              메인으로 돌아가기
+            </span>
           </div>
 
           {selectedDrug && (
